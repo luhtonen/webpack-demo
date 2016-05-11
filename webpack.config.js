@@ -7,11 +7,13 @@ const pkg = require('./package.json');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
+  style: path.join(__dirname, 'app', 'main.css'),
   build: path.join(__dirname, 'build')
 };
 
 const common = {
   entry: {
+    style: PATHS.style,
     app: PATHS.app
   },
   output: {
@@ -51,7 +53,7 @@ switch (process.env.npm_lifecycle_event) {
         entries: Object.keys(pkg.dependencies)
       }),
       parts.minify(),
-      parts.extractCSS(PATHS.app)
+      parts.extractCSS(PATHS.style)
     );
     break;
   default:
@@ -60,7 +62,7 @@ switch (process.env.npm_lifecycle_event) {
       {
         devtool: 'eval-source-map'
       },
-      parts.setupCSS(PATHS.app),
+      parts.setupCSS(PATHS.style),
       parts.devServer({
         // Customise host/port here if needed
         host: process.env.HOST,
