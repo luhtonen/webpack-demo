@@ -2,8 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
-
 const parts = require('./lib/parts');
+
+const pkg = require('./package.json');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -39,6 +40,10 @@ switch (process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV',
         'production'
       ),
+      parts.extractBundle({
+        name: 'vendor',
+        entries: Object.keys(pkg.dependencies)
+      }),
       parts.minify(),
       parts.setupCSS(PATHS.app)
     );
