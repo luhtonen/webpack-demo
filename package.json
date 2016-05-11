@@ -6,6 +6,8 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
+    "stats": "webpack --profile --json > stats.json",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +17,7 @@
     "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gh-pages": "^0.11.0",
     "html-webpack-plugin": "^2.16.1",
     "purecss": "^0.6.0",
     "purifycss-webpack-plugin": "^2.0.3",
