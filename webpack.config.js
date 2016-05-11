@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 const parts = require('./lib/parts');
-
 const pkg = require('./package.json');
 
 const PATHS = {
@@ -42,6 +41,7 @@ switch (process.env.npm_lifecycle_event) {
           chunkFilename: '[chunkhash].js'
         }
       },
+      parts.clean(PATHS.build),
       parts.setFreeVariable(
         'process.env.NODE_ENV',
         'production'
